@@ -7,13 +7,15 @@ interface IProps {
   selectedActivity: IActivity;
   handleCreateActivity: (activity: IActivity) => void;
   handleUpdateActivity: (activity: IActivity) => void;
+  submitting: boolean;
 }
 
 export const ActivityForm: FC<IProps> = ({
   handleEditMode,
   selectedActivity: initialFormState,
   handleCreateActivity,
-  handleUpdateActivity
+  handleUpdateActivity,
+  submitting
 }) => {
   const handleEvent = (
     event: FormEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -90,6 +92,7 @@ export const ActivityForm: FC<IProps> = ({
           value={activity.venue}
         />
         <Button
+          loading={submitting}
           content="Submit"
           onClick={handlerEvent}
           type="submit"
